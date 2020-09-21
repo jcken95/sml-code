@@ -1,8 +1,8 @@
 library("rstan")
 source("../GPfunctionsOptim.R")
 source("../hetGPfunctions.R")
-het.uni <- stan_model("../hetGP-univariate.stan")
-SML <- stan_model("../SML-hetGP-univariate.stan")
+het.uni <- stan_model("hetGP-univariate.stan")
+SML <- stan_model("SML-hetGP-univariate.stan")
 ## lets define some functions ...
 
 f1 <- function(x){
