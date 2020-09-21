@@ -226,13 +226,9 @@ Score.sml <- Score(y.test, Mean.ml, diag(Var.ml))
 sum(Score.hetgp); sum(Score.sml)
 ## look at residuals
 par(mfrow=c(1,2))
-resids.het <- (y.test - Mean.het)/sqrt(diag(Var.het))
-resids.ml <- (y.test - Mean.ml)/sqrt(diag(Var.ml))
 
 chol.het <- forwardsolve(t(chol(Var.het)), (y.test - Mean.het))
 chol.ml <- forwardsolve(t(chol(Var.ml)), (y.test - Mean.ml))
-hist(resids.het,prob=T)
-hist(resids.ml,prob=T)
 
 ## coverage plot
 
@@ -245,14 +241,7 @@ coverage <- function(resids){
   }
   list(x=emp.cov,y = 1 - alpha) 
 }
-plot(y.test, Mean.ml)
-par(mfrow = c(1,2))
 
-plot(coverage(resids.het), xlab = "Empirical Coverage", ylab="", main = "HetGP", pch = 20)
-abline(0,1)
-title(ylab = "Expected Covereage" , line = 1.9)
-plot(coverage(resids.ml),  xlab = "Empirical Coverage", ylab="", main = "SML", pch = 20)
-abline(0,1)
 par(mfrow=c(1,2), cex.axis=2, cex.lab=2,cex.main=2)
 plot(coverage(chol.het), xlab = "Empirical Coverage", ylab="", main = "HetGP", pch = 20)
 abline(0,1)
